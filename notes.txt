@@ -1,0 +1,39 @@
+
+Service testpaho:
+testpaho python script can access service mqtt by connecting to
+mqtt:1883
+instead of an ip
+
+
+
+Service mqtt:
+
+
+https://philhawthorne.com/setting-up-a-local-mosquitto-server-using-docker-for-mqtt-communication/
+https://hub.docker.com/r/toke/mosquitto/
+
+Original:
+docker run --name mqtt --restart=always --net=host -tid -v /volume1/docker/mqtt/config:/mqtt/config:ro -v /volume1/docker/mqtt/log:/mqtt/log -v /volume1/docker/mqtt/data/:/mqtt/data/ toke/mosquitto
+
+
+Mod2:
+docker run --name mqtt --restart=always --net=host -tid -v /Users/snorrefo/Documents/code/dev-env-docker/docker-mosquitto-test/mqtt/config:/mqtt/config:ro -v /Users/snorrefo/Documents/code/dev-env-docker/docker-mosquitto-test/mqtt/log:/mqtt/log -v /Users/snorrefo/Documents/code/dev-env-docker/docker-mosquitto-test/mqtt/data/:/mqtt/data/ toke/mosquitto
+
+docker run --name mqtt --restart=always --net=host -tid toke/mosquitto
+
+Final without detached -d:
+docker run --name mqtt --restart=always -ti -p 1883:1883 -p 9001:9001 -v /Users/snorrefo/Documents/code/dev-env-docker/docker-mosquitto-test/mqtt/config:/mqtt/config:ro toke/mosquitto
+
+Final does not work since empty local mosquitto.conf does not enable websockets on 9001:
+docker run --name mqtt --restart=always -tid -p 1883:1883 -p 9001:9001 -v /Users/snorrefo/Documents/code/dev-env-docker/docker-mosquitto-test/mqtt/config:/mqtt/config:ro toke/mosquitto
+
+
+Final
+docker run --name mqtt --restart=always -tid -p 1883:1883 -p 9001:9001 toke/mosquitto
+
+docker container logs mqtt
+1523822780: mosquitto version 1.4.14 (build date Mon, 10 Jul 2017 23:48:43 +0100) starting
+1523822780: Config loaded from /mqtt/config/mosquitto.conf.
+1523822780: Opening websockets listen socket on port 9001.
+1523822780: Opening ipv4 listen socket on port 1883.
+1523822780: Opening ipv6 listen socket on port 1883.

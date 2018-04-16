@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  mqtt: # docker run --name mqtt --restart=always -tid -p 1883:1883 -p 9001:9001 toke/mosquitto
+    image: toke/mosquitto
+    ports:
+      # - "1883:1883" # standard
+      - "9001:9001" # websockets
+
+  testpaho:
+    build: ./test-paho
+    command: python myapp.py
+  # web:
+  #   build: ./web
+  #   command: python app.py
+  #   volumes:
+  #     - ./web/src:/code
+  #   ports:
+  #     - "5000:5000"
