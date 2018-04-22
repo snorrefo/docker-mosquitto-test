@@ -2,15 +2,15 @@
 FROM python:3
 
 # Set the working directory to /code
-WORKDIR /code
+WORKDIR /code/
 
 # Install any needed packages specified in requirements.txt
 RUN pip install paho-mqtt
 
 # Copy the current directory contents into the container at /code
-COPY ./src/app.py /code/
+COPY ./src/ /code/
 
 
 
 # Run app.py when the container launches
-#CMD ["python", "app.py"]
+CMD ["python", "app.py"]

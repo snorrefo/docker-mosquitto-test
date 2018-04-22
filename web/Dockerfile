@@ -2,7 +2,7 @@
 FROM python:3
 
 # Set the working directory to /code
-WORKDIR /code
+WORKDIR /code/
 
 RUN apt-get install subversion
 
@@ -14,7 +14,7 @@ COPY ./src/requirements.txt /tmp/
 RUN pip install -r /tmp/requirements.txt
 
 # Copy the current directory contents into the container at /code
-COPY ./src/app.py /code/
+COPY ./src/ /code/
 
 
 
@@ -25,4 +25,4 @@ EXPOSE 5000
 
 
 # Run app.py when the container launches
-#CMD ["python", "app.py"]
+CMD ["python", "app.py"]

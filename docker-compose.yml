@@ -3,7 +3,7 @@ version: "3"
 services:
   web:
     build: ./web
-    command: python app.py
+    command: ["python", "app.py"]
     volumes:
       - ./web/src:/code
     ports:
@@ -17,7 +17,7 @@ services:
 
   testpaho:
     build: ./test-paho
-    command: python app.py
+    command: ["python", "app.py"]
     volumes:
       - ./test-paho/src:/code
     restart: always
