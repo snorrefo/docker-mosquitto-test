@@ -8,6 +8,7 @@ def index():
 
     script = 'script'
     div = 'div'
+
     return render_template("index.html", script=script, div=div)
 
 
@@ -20,7 +21,7 @@ def pol():
 
     else:
 
-        return 'GET'
+        return 'GETTTT'
 
 
 if __name__ == "__main__":
